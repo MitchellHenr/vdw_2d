@@ -10,5 +10,5 @@
 #PBS -M hmmitche@uvm.edu
 #PBS -m bea
 
-cd $HOME/molecules/data
-bash ../code/run.sh
+cd $HOME/vdw_2d/data
+../code/run.sh
