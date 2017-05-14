@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /usr/bin/env bash
 set -e
 
 FILE="$( dirname "${BASH_SOURCE[0]}" )/vdw.py"
