@@ -54,7 +54,7 @@ if __name__ == "__main__":
                         required=False)
     args = parser.parse_args()
 
-    zs = np.arange(2, 140, 2)
+    zs = np.arange(2, 140, 1)
     element = elements[args.atom[0]]
     material = materials[args.material[0]]
     α0 = element["α0"]          # nm^3
