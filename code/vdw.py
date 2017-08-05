@@ -10,10 +10,6 @@ import argparse
 import numpy as np
 import scipy.integrate as integrate
 
-from pympler import tracker
-
-tr = tracker.SummaryTracker()
-
 π = np.pi
 
 
@@ -74,7 +70,6 @@ if __name__ == "__main__":
     for g in gs:
         for z in zs:
             c = c3(α0, ω0, g, z, Δ, v) / 4.032e-3  # a.u. of C3
-            tr.print_diff()
             print(z)
             with open("{}-{}-{}.txt".format(args.atom[0],
                                             args.material[0],
