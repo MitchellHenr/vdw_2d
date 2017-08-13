@@ -7,6 +7,7 @@
 #                a sheet of a material and an atom.
 
 import argparse
+import gc
 import numpy as np
 import scipy.integrate as integrate
 
@@ -35,11 +36,32 @@ def vpi(g, q, ω, Ω, δ):
 
 
 if __name__ == "__main__":
-    elements = {"H": {"α0": 4.5 * 1.4818e-4, "ω0": 11.65},
-                "Na": {"α0": 162.6 * 1.4818e-4, "ω0": 2.15},
-                "He": {"α0": 1.38 * 1.4818e-4, "ω0": 27}}
-    materials = {"graphene": {"v": 0.658, "Δ": 1e-100, "g": 2.2},
-                 "MoS2": {"v": 0.351, "Δ": 0.835, "g": 4.1}}
+    elements = {
+        "H": {
+            "α0": 4.5 * 1.4818e-4,
+            "ω0": 11.65
+        },
+        "Na": {
+            "α0": 162.6 * 1.4818e-4,
+            "ω0": 2.15
+        },
+        "He": {
+            "α0": 1.38 * 1.4818e-4,
+            "ω0": 27
+        }
+    }
+    materials = {
+        "graphene": {
+            "v": 0.658,
+            "Δ": 1e-100,
+            "g": 2.2
+        },
+        "MoS2": {
+            "v": 0.351,
+            "Δ": 0.835,
+            "g": 4.1
+        }
+    }
     parser = argparse.ArgumentParser(description="Create a list of C3s")
     parser.add_argument("atom", metavar="X", type=str, nargs=1,
                         help="the atom which we're analyzing")
@@ -75,3 +97,5 @@ if __name__ == "__main__":
                                             args.material[0],
                                             g), "ab") as data_file:
                 np.savetxt(data_file, np.array([[z, c]]))
+            del(c)
+            gc.collect()
